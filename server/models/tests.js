@@ -1,8 +1,7 @@
 import mongoose from "mongoose";
-const { Schema } = mongoose;
 
-const subjectSchema = mongoose.Schema({
-  subjectName: {
+const testsSchema = mongoose.Schema({
+  test: {
     type: String,
     required: true,
     trim: true,
@@ -15,7 +14,7 @@ const subjectSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  totalLectures: {
+  totalMarks: {
     type: Number,
     default: 10,
   },
@@ -23,10 +22,14 @@ const subjectSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  attendence: {
-    type: Schema.Types.ObjectId,
-    ref: "attendence",
+  section: {
+    type: String,
+    required: true,
+  },
+  date: {
+    type: String,
+    required: true,
   },
 });
 
-export default mongoose.model("subject", subjectSchema);
+export default mongoose.model("tests", testsSchema);

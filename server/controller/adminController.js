@@ -1,11 +1,13 @@
-import Admin from "../models/admin.js";
-import Department from "../models/department.js";
-import Faculty from "../models/faculty.js";
-import Student from "../models/student.js";
-import Subject from "../models/subject.js";
-import Notice from "../models/notice.js";
+import Admin from "../models/admins.js";
+import Department from "../models/departments.js";
+import Faculty from "../models/faculties.js";
+import Student from "../models/students.js";
+import Subject from "../models/subjects.js";
+import Notice from "../models/notices.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
+
+const JWT_SECRET = process.env.JWT_SECRET;
 
 export const adminSignup = async (req, res) => {
 
@@ -37,7 +39,7 @@ export const adminSignup = async (req, res) => {
         id: admin.id
       }
     }
-    const authtoken = jwt.sign(data, sEcReT);
+    const authtoken = jwt.sign(data, JWT_SECRET);
 
     // res.json(admin);
     success = true;
@@ -67,7 +69,7 @@ export const adminLogin = async (req, res) => {
       return res.status(404).json(errors);
     }
 
-    const token = jwt.sign({ email: existingAdmin.email, id: existingAdmin._id }, process.env.JWT_SECRET, { expiresIn: "1h" });
+    const token = jwt.sign({ email: existingAdmin.email, id: existingAdmin._id }, JWT_SECRET, { expiresIn: "1h" });
 
     res.status(200).json({ result: existingAdmin, token: token });
   } catch (error) {
@@ -296,9 +298,8 @@ export const addFaculty = async (req, res) => {
 
     var username = components.join("");
     let hashedPassword;
-    const newDob = dob.split("-").reverse().join("-");
 
-    hashedPassword = await bcrypt.hash(newDob, 10);
+    hashedPassword = bcrypt.hash(dob);
     var passwordUpdated = false;
 
     const newFaculty = await new Faculty({
@@ -562,9 +563,8 @@ export const addStudent = async (req, res) => {
 
     var username = components.join("");
     let hashedPassword;
-    const newDob = dob.split("-").reverse().join("-");
 
-    hashedPassword = await bcrypt.hash(newDob, 10);
+    hashedPassword = bcrypt.hash(dob);
     var passwordUpdated = false;
 
     const newStudent = await new Student({

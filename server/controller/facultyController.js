@@ -1,11 +1,13 @@
-import Faculty from "../models/faculty.js";
-import Test from "../models/test.js";
-import Student from "../models/student.js";
-import Subject from "../models/subject.js";
+import Faculty from "../models/faculties.js";
+import Test from "../models/tests.js";
+import Student from "../models/students.js";
+import Subject from "../models/subjects.js";
 import Marks from "../models/marks.js";
-import Attendence from "../models/attendance.js";
+import Attendence from "../models/attendences.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
+
+const JWT_SECRET = process.env.JWT_SECRET;
 
 export const facultyLogin = async (req, res) => {
   const { username, password } = req.body;
@@ -30,7 +32,7 @@ export const facultyLogin = async (req, res) => {
         email: existingFaculty.email,
         id: existingFaculty._id,
       },
-      "sEcReT",
+      JWT_SECRET,
       { expiresIn: "1h" }
     );
 

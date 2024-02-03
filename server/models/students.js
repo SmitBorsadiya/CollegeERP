@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
+const { Schema } = mongoose;
 
-const facultySchema = mongoose.Schema({
+const studentsSchema = mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -15,30 +16,49 @@ const facultySchema = mongoose.Schema({
   },
   password: {
     type: String,
+    required: true,
   },
+  year: {
+    type: Number,
+    required: true,
+  },
+  subjects: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "subject",
+    },
+  ],
   username: {
     type: String,
   },
   gender: {
     type: String,
   },
-  designation: {
+  fatherName: {
     type: String,
-    required: true,
+  },
+  motherName: {
+    type: String,
   },
   department: {
     type: String,
     required: true,
   },
+  section: {
+    type: String,
+    required: true,
+  },
+  batch: {
+    type: String,
+  },
   contactNumber: {
+    type: Number,
+  },
+  fatherContactNumber: {
     type: Number,
   },
   dob: {
     type: String,
-    required: true,
-  },
-  joiningYear: {
-    type: Number,
     required: true,
   },
   passwordUpdated: {
@@ -47,4 +67,4 @@ const facultySchema = mongoose.Schema({
   },
 });
 
-export default mongoose.model("faculty", facultySchema);
+export default mongoose.model("students", studentsSchema);

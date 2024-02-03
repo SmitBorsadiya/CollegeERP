@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const departmentSchema = mongoose.Schema({
+const departmentsSchema = mongoose.Schema({
   department: {
     type: String,
     required: true,
@@ -12,4 +12,4 @@ const departmentSchema = mongoose.Schema({
   },
 });
 
-export default mongoose.model("department", departmentSchema);
+export default mongoose.model("departments", departmentsSchema);

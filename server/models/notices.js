@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const noticeSchema = mongoose.Schema({
+const noticesSchema = mongoose.Schema({
   topic: {
     type: String,
     require: true,
@@ -23,4 +23,4 @@ const noticeSchema = mongoose.Schema({
   },
 });
 
-export default mongoose.model("notice", noticeSchema);
+export default mongoose.model("notices", noticesSchema);

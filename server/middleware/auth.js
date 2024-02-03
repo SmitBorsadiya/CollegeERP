@@ -1,11 +1,13 @@
 import jwt from "jsonwebtoken";
 
+const JWT_SECRET = process.env.JWT_SECRET;
+
 const auth = async (req, resp, next) => {
   try {
     const token = req.headers.authorization?.split(" ")[1];
     let decodedData;
     if (token) {
-      decodedData = jwt.verify(token, "sEcReT");
+      decodedData = jwt.verify(token, JWT_SECRET);
       req.userId = decodedData?.id;
     }
     next();
