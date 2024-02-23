@@ -19,7 +19,6 @@ const Body = () => {
   const user = JSON.parse(localStorage.getItem("user"));
   const subjects = useSelector((state) => state.admin.subjects.result);
   var totalAttendance = 0;
-  console.log(attendance);
 
   attendance?.map((att) => (totalAttendance += att.attended));
 
@@ -81,7 +80,7 @@ const Body = () => {
                 <Calendar onChange={onChange} value={value} />
               </div>
             </div>
-            <div className="bg-white h-[17rem] w-full rounded-xl shadow-lg flex flex-col  pt-3">
+            <div className="bg-white h-[17rem] w-full rounded-xl shadow-lg flex flex-col pt-3">
               <div className="flex px-3">
                 {open && (
                   <ReplyIcon

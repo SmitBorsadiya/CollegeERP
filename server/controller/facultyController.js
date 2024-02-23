@@ -32,7 +32,7 @@ export const facultyLogin = async (req, res) => {
         email: existingFaculty.email,
         id: existingFaculty._id,
       },
-      JWT_SECRET,
+      "sEcReT",
       { expiresIn: "1h" }
     );
 
@@ -222,8 +222,7 @@ export const uploadMarks = async (req, res) => {
 
 export const markAttendance = async (req, res) => {
   try {
-    const { selectedStudents, subjectName, department, year, section } =
-      req.body;
+    const { selectedStudents, subjectName, department, year, section } = req.body;
 
     const sub = await Subject.findOne({ subjectName });
 

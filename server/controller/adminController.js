@@ -39,7 +39,7 @@ export const adminSignup = async (req, res) => {
         id: admin.id
       }
     }
-    const authtoken = jwt.sign(data, JWT_SECRET);
+    const authtoken = jwt.sign(data, "sEcReT");
 
     // res.json(admin);
     success = true;
@@ -69,7 +69,7 @@ export const adminLogin = async (req, res) => {
       return res.status(404).json(errors);
     }
 
-    const token = jwt.sign({ email: existingAdmin.email, id: existingAdmin._id }, JWT_SECRET, { expiresIn: "1h" });
+    const token = jwt.sign({ email: existingAdmin.email, id: existingAdmin._id }, "sEcReT", { expiresIn: "1h" });
 
     res.status(200).json({ result: existingAdmin, token: token });
   } catch (error) {
@@ -299,7 +299,7 @@ export const addFaculty = async (req, res) => {
     var username = components.join("");
     let hashedPassword;
 
-    hashedPassword = bcrypt.hash(dob);
+    hashedPassword = await bcrypt.hash(dob, 10);
     var passwordUpdated = false;
 
     const newFaculty = await new Faculty({
@@ -564,7 +564,7 @@ export const addStudent = async (req, res) => {
     var username = components.join("");
     let hashedPassword;
 
-    hashedPassword = bcrypt.hash(dob);
+    hashedPassword = await bcrypt.hash(dob, 10);
     var passwordUpdated = false;
 
     const newStudent = await new Student({

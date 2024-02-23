@@ -4,11 +4,11 @@ const { Schema } = mongoose;
 const marksSchema = mongoose.Schema({
   exam: {
     type: Schema.Types.ObjectId,
-    ref: "test",
+    ref: "tests",
   },
   student: {
     type: Schema.Types.ObjectId,
-    ref: "student",
+    ref: "students",
   },
   marks: {
     type: Number,

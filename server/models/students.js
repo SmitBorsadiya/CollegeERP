@@ -25,7 +25,7 @@ const studentsSchema = mongoose.Schema({
   subjects: [
     {
       type: Schema.Types.ObjectId,
-      ref: "subject",
+      ref: "subjects",
     },
   ],
   username: {

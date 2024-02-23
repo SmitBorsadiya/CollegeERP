@@ -11,13 +11,7 @@ const TestResult = () => {
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(
-      getTestResult(
-        user.result.department,
-        user.result.year,
-        user.result.section
-      )
-    );
+    dispatch(getTestResult(user.result.department, user.result.year, user.result.section));
   }, [dispatch]);
   return (
     <div className="bg-[#d6d9e0] h-screen flex items-center justify-center">

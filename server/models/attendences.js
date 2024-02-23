@@ -4,11 +4,11 @@ const { Schema } = mongoose;
 const attendencesSchema = mongoose.Schema({
   student: {
     type: Schema.Types.ObjectId,
-    ref: "student",
+    ref: "students",
   },
   subject: {
     type: Schema.Types.ObjectId,
-    ref: "subject",
+    ref: "subjects",
   },
   totalLecturesByFaculty: {
     type: Number,

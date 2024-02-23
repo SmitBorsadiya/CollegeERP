@@ -31,13 +31,13 @@ export const studentLogin = async (req, res) => {
         email: existingStudent.email,
         id: existingStudent._id,
       },
-      JWT_SECRET,
+      "sEcReT",
       { expiresIn: "1h" }
     );
 
     res.status(200).json({ result: existingStudent, token: token });
   } catch (error) {
-    console.log(error);
+    res.status(500).json(error);
   }
 };
 
@@ -143,23 +143,30 @@ export const testResult = async (req, res) => {
     const errors = { notestError: String };
     const student = await Student.findOne({ department, year, section });
     const test = await Test.find({ department, year, section });
+
+    const subjectName = await Subject.find({ department, year });
+    console.log(subjectName[0].subjectName);
+    console.log(subjectName[1].subjectName);
+    console.log(subjectName[2].subjectName);
+    
     if (test.length === 0) {
       errors.notestError = "No Test Found";
       return res.status(404).json(errors);
     }
-    var result = [];
-    for (var i = 0; i < test.length; i++) {
-      var subjectCode = test[i].subjectCode;
-      var subject = await Subject.findOne({ subjectCode });
-      var marks = await Marks.findOne({
+    let result = [];
+    for (let i = 0; i < test.length; i++) {
+      let subjectCode = test[i].subjectCode;
+      let subject = await Subject.find({ subjectCode });
+      let marks = await Marks.findOne({
         student: student._id,
         exam: test[i]._id,
       });
+
       if (marks) {
-        var temp = {
+        let temp = {
           marks: marks.marks,
           totalMarks: test[i].totalMarks,
-          subjectName: subject.subjectName,
+          subjectName: subject[i].subjectName,
           subjectCode,
           test: test[i].test,
         };
@@ -190,10 +197,7 @@ export const attendance = async (req, res) => {
     res.status(200).json({
       result: attendence.map((att) => {
         let res = {};
-        res.percentage = (
-          (att.lectureAttended / att.totalLecturesByFaculty) *
-          100
-        ).toFixed(2);
+        res.percentage = ((att.lectureAttended / att.totalLecturesByFaculty) * 100).toFixed(2);
         res.subjectCode = att.subject.subjectCode;
         res.subjectName = att.subject.subjectName;
         res.attended = att.lectureAttended;

@@ -25,7 +25,7 @@ const subjectsSchema = mongoose.Schema({
   },
   attendence: {
     type: Schema.Types.ObjectId,
-    ref: "attendence",
+    ref: "attendences",
   },
 });
 

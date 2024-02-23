@@ -7,7 +7,7 @@ import {
   UPDATE_STUDENT,
   GET_SUBJECT,
 } from "../actionTypes";
-import * as api from "../api";
+import * as api from "../api/index";
 
 export const studentSignIn = (formData, navigate) => async (dispatch) => {
   try {
@@ -20,17 +20,16 @@ export const studentSignIn = (formData, navigate) => async (dispatch) => {
   }
 };
 
-export const studentUpdatePassword =
-  (formData, navigate) => async (dispatch) => {
-    try {
-      const { data } = await api.studentUpdatePassword(formData);
-      dispatch({ type: UPDATE_PASSWORD, payload: true });
-      alert("Password Updated");
-      navigate("/student/home");
-    } catch (error) {
-      dispatch({ type: SET_ERRORS, payload: error.response.data });
-    }
-  };
+export const studentUpdatePassword = (formData, navigate) => async (dispatch) => {
+  try {
+    const { data } = await api.studentUpdatePassword(formData);
+    dispatch({ type: UPDATE_PASSWORD, payload: true });
+    alert("Password Updated");
+    navigate("/student/home");
+  } catch (error) {
+    dispatch({ type: SET_ERRORS, payload: error.response.data });
+  }
+};
 
 export const updateStudent = (formData) => async (dispatch) => {
   try {
@@ -54,32 +53,30 @@ export const getSubject = (department, year) => async (dispatch) => {
   }
 };
 
-export const getTestResult =
-  (department, year, section) => async (dispatch) => {
-    try {
-      const formData = {
-        department,
-        year,
-        section,
-      };
-      const { data } = await api.getTestResult(formData);
-      dispatch({ type: TEST_RESULT, payload: data });
-    } catch (error) {
-      dispatch({ type: SET_ERRORS, payload: error.response.data });
-    }
-  };
+export const getTestResult = (department, year, section) => async (dispatch) => {
+  try {
+    const formData = {
+      department,
+      year,
+      section,
+    };
+    const { data } = await api.getTestResult(formData);
+    dispatch({ type: TEST_RESULT, payload: data });
+  } catch (error) {
+    dispatch({ type: SET_ERRORS, payload: error.response.data });
+  }
+};
 
-export const getAttendance =
-  (department, year, section) => async (dispatch) => {
-    try {
-      const formData = {
-        department,
-        year,
-        section,
-      };
-      const { data } = await api.getAttendance(formData);
-      dispatch({ type: ATTENDANCE, payload: data });
-    } catch (error) {
-      dispatch({ type: SET_ERRORS, payload: error.response.data });
-    }
-  };
+export const getAttendance = (department, year, section) => async (dispatch) => {
+  try {
+    const formData = {
+      department,
+      year,
+      section,
+    };
+    const { data } = await api.getAttendance(formData);
+    dispatch({ type: ATTENDANCE, payload: data });
+  } catch (error) {
+    dispatch({ type: SET_ERRORS, payload: error.response.data });
+  }
+};

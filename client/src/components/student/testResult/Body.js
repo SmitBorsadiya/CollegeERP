@@ -17,7 +17,6 @@ const Body = () => {
 
   const [search, setSearch] = useState(false);
 
-  console.log(error);
   useEffect(() => {
     if (Object.keys(store.errors).length !== 0) {
       setError(store.errors);
