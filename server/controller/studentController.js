@@ -145,9 +145,6 @@ export const testResult = async (req, res) => {
     const test = await Test.find({ department, year, section });
 
     const subjectName = await Subject.find({ department, year });
-    console.log(subjectName[0].subjectName);
-    console.log(subjectName[1].subjectName);
-    console.log(subjectName[2].subjectName);
     
     if (test.length === 0) {
       errors.notestError = "No Test Found";
@@ -166,7 +163,7 @@ export const testResult = async (req, res) => {
         let temp = {
           marks: marks.marks,
           totalMarks: test[i].totalMarks,
-          subjectName: subject[i].subjectName,
+          subjectName: subject.subjectName,
           subjectCode,
           test: test[i].test,
         };
