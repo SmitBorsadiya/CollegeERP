@@ -33,7 +33,7 @@ export const facultyLogin = async (req, res) => {
         id: existingFaculty._id,
       },
       "sEcReT",
-      { expiresIn: "1h" }
+      { expiresIn: "7d" }
     );
 
     res.status(200).json({ result: existingFaculty, token: token });

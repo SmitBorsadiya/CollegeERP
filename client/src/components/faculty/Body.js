@@ -62,7 +62,7 @@ const Body = () => {
               />
               <div className="flex flex-col">
                 <h1>Test</h1>
-                <h2 className="text-2xl font-bold">3</h2>
+                <h2 className="text-2xl font-bold">4</h2>
               </div>
             </div>
           </div>

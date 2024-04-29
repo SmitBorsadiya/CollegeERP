@@ -32,7 +32,7 @@ export const studentLogin = async (req, res) => {
         id: existingStudent._id,
       },
       "sEcReT",
-      { expiresIn: "1h" }
+      { expiresIn: "7d" }
     );
 
     res.status(200).json({ result: existingStudent, token: token });

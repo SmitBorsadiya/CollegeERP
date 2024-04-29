@@ -69,7 +69,7 @@ export const adminLogin = async (req, res) => {
       return res.status(404).json(errors);
     }
 
-    const token = jwt.sign({ email: existingAdmin.email, id: existingAdmin._id }, "sEcReT", { expiresIn: "1h" });
+    const token = jwt.sign({ email: existingAdmin.email, id: existingAdmin._id }, "sEcReT", { expiresIn: "7d" });
 
     res.status(200).json({ result: existingAdmin, token: token });
   } catch (error) {
@@ -429,7 +429,7 @@ export const getAdmin = async (req, res) => {
 
     const admins = await Admin.find({ department });
     if (admins.length === 0) {
-      errors.noAdminError = "No Subject Found";
+      errors.noAdminError = "No Admin Found";
       return res.status(404).json(errors);
     }
     res.status(200).json({ result: admins });
@@ -444,6 +444,10 @@ export const deleteAdmin = async (req, res) => {
   try {
     const admins = req.body;
     const errors = { noAdminError: String };
+    let loggedInAdmin = await Admin.findOne({ _id: req.userId });
+    if(loggedInAdmin){
+      return res.status(200).json({ message: "Logged in Admin cannot be Deleted!" });
+    }
     for (var i = 0; i < admins.length; i++) {
       var admin = admins[i];
 

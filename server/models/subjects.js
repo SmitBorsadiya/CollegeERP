@@ -17,7 +17,7 @@ const subjectsSchema = mongoose.Schema({
   },
   totalLectures: {
     type: Number,
-    default: 10,
+    default: 0,
   },
   year: {
     type: String,
