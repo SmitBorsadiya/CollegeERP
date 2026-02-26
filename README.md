@@ -1,7 +1,3 @@
-<p align="center">
-  <img src="avtar.jpeg" alt="College ERP Logo" width="120" />
-</p>
-
 <h1 align="center">🎓 College ERP System</h1>
 
 <p align="center">
