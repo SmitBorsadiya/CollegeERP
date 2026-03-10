@@ -321,48 +321,6 @@ Open two terminal windows and run the above commands in each. For the initial ad
 ```
 POST http://localhost:5000/api/admin/signup
 ```
-
----
-
-## 🏗 Build & Deployment
-
-### Frontend Production Build
-
-```bash
-cd client
-npm run build
-```
-
-This creates an optimized production build in `client/build/`.
-
-### Heroku Deployment (Server)
-
-The server includes a `Procfile` for Heroku deployment:
-
-```
-web: npm run start
-```
-
-**Steps:**
-
-1. Create a Heroku app and add the **MongoDB Atlas** connection URL to config vars.
-2. Set `JWT_SECRET` and `PORT` in Heroku environment variables.
-3. Deploy the `server/` directory to Heroku.
-
-### Netlify Deployment (Client)
-
-The client includes a `_redirects` file for Netlify SPA routing:
-
-```
-/*    /index.html    200
-```
-
-**Steps:**
-
-1. Build the client: `npm run build`
-2. Deploy the `client/build/` folder to Netlify.
-3. Set `REACT_APP_API_URL` to your deployed server URL.
-
 ---
 
 ## 📡 API Documentation
