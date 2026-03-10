@@ -25,13 +25,10 @@
 - [Installation & Setup](#-installation--setup)
 - [Environment Variables](#-environment-variables)
 - [Running the Project](#-running-the-project)
-- [Build & Deployment](#-build--deployment)
 - [API Documentation](#-api-documentation)
 - [Database Schema](#-database-schema)
 - [Testing](#-testing)
 - [Troubleshooting / Common Issues](#-troubleshooting--common-issues)
-- [Contributing Guidelines](#-contributing-guidelines)
-- [License](#-license)
 
 ---
 
